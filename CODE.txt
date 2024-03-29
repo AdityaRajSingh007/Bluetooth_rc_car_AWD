@@ -1,0 +1,98 @@
+#include <Arduino.h>
+
+const int IN1 = 4;
+const int IN2 = 5;
+const int IN3 = 6;
+const int IN4 = 7;
+
+void setup() {
+  // Set the output pins
+  Serial.begin(9600); 
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  pinMode(LED_BUILTIN,OUTPUT);  
+  digitalWrite(LED_BUILTIN,LOW);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char incomingByte = Serial.read();
+    Serial.println(incomingByte);
+    switch (incomingByte) {
+      case 'S':
+        // Motor A
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, HIGH);
+        // Motor B
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, HIGH);
+        break;
+      case 'F':
+        // Motor A
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, LOW);
+        // Motor B
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, LOW);
+        break;
+      case 'B':
+        // Motor A
+        digitalWrite(IN1, LOW);
+        digitalWrite(IN2, HIGH);
+        // Motor B
+        digitalWrite(IN3, LOW);
+        digitalWrite(IN4, HIGH);
+        break;
+        case 'L':
+        // Motor A
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, LOW);
+        // Motor B
+        digitalWrite(IN3, LOW);
+        digitalWrite(IN4, HIGH);
+        break;
+        case 'R':
+        // Motor A
+        digitalWrite(IN1, LOW);
+        digitalWrite(IN2, HIGH);
+        // Motor B
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, LOW);
+        break;
+        case 'G':
+        // Motor A
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, LOW);
+        // Motor B
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, HIGH);
+        break;
+        case 'H':
+        // Motor A
+        digitalWrite(IN1, LOW);
+        digitalWrite(IN2, HIGH);
+        // Motor B
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, HIGH);
+        break;
+        case 'I':
+        // Motor A
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, HIGH);
+        // Motor B
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, LOW);
+        break;
+        case 'J':
+        // Motor A
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, HIGH);
+        // Motor B
+        digitalWrite(IN3, LOW);
+        digitalWrite(IN4, HIGH);
+        break;
+    }
+  }
+}
